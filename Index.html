@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏍️ Roblox Rodograu Scripts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.3); }
+            to { text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 30px rgba(255,215,0,0.6); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .script-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .script-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .script-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .script-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features li {
+            padding: 5px 0;
+            opacity: 0.8;
+        }
+
+        .features li:before {
+            content: "🏍️";
+            margin-right: 8px;
+        }
+
+        .code-container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-title {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .instructions h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .controls h3 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            margin: 10px 0;
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .scripts-grid { grid-template-columns: 1fr; }
+            .script-card { padding: 20px; }
+            .code-block { font-size: 0.8rem; }
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .function { color: #50fa7b; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🏍️ ROBLOX RODOGRAU SCRIPTS 🏍️</div>
+        <div class="subtitle">Os melhores scripts de rodograu para Roblox!</div>
+        <div class="description">
+            Aqui você encontra scripts completos de rodograu com motos brasileiras, 
+            efeitos realistas, sons autênticos e muito mais! Todos gratuitos e prontos para usar.
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="scripts-grid">
+            <!-- Script Completo -->
+            <div class="script-card">
+                <div class="script-title">
+                    🚀 Script Completo Profissional
+                </div>
+                <div class="script-description">
+                    O script mais completo com interface profissional, 10+ motos brasileiras, 
+                    efeitos visuais incríveis e sistema de física realista!
+                </div>
+                
+                <ul class="features">
+                    <li>10+ motos brasileiras autênticas</li>
+                    <li>Interface de garagem completa</li>
+                    <li>Sistema de grau realista</li>
+                    <li>Efeitos visuais (fogo, fumaça)</li>
+                    <li>Sons de motor únicos</li>
+                    <li>Velocímetro funcional</li>
+                    <li>Controles responsivos</li>
+                </ul>
+
+                <div class="instructions">
+                    <h3>📋 Como Usar:</h3>
+                    <ol>
+                        <li>Copie o script completo</li>
+                        <li>Cole no <strong>ServerScriptService</strong></li>
+                        <li>Execute o jogo</li>
+                        <li>A interface aparecerá automaticamente</li>
+                    </ol>
+                </div>
+
+                <div class="controls">
+                    <h3>🎮 Controles:</h3>
+                    <p><strong>W</strong> - Acelerar | <strong>S</strong> - Freiar | <strong>Espaço</strong> - Grau | <strong>H</strong> - Buzina</p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Script Completo (ServerScriptService)</span>
+                        <button class="copy-btn" onclick="copyCode('complete-script')">📋 Copiar</button>
+                    </div>
+                    <div class="code-block" id="complete-script">-- RODOGRAU BRASIL - SCRIPT COMPLETO
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local MOTOS = {
+    ["Honda CG 160"] = {Color3.fromRGB(255,0,0), 85, "rbxassetid://131961136"},
+    ["Honda Bros 160"] = {Color3.fromRGB(255,165,0), 95, "rbxassetid://142285556"},
+    ["Yamaha Factor 150"] = {Color3.fromRGB(0,100,255), 90, "rbxassetid://131961136"},
+    ["Honda Titan 160"] = {Color3.fromRGB(0,255,127), 92, "rbxassetid://142285556"},
+    ["Yamaha Crosser 150"] = {Color3.fromRGB(128,0,128), 88, "rbxassetid://131961136"},
+    ["Honda Pop 110"] = {Color3.fromRGB(105,105,105), 75, "rbxassetid://131961136"},
+    ["Suzuki Yes 125"] = {Color3.fromRGB(46,139,87), 78, "rbxassetid://142285556"},
+    ["Honda Biz 125"] = {Color3.fromRGB(255,69,0), 76, "rbxassetid://131961136"},
+    ["Yamaha YBR 125"] = {Color3.fromRGB(255,215,0), 80, "rbxassetid://142285556"},
+    ["Traxx Sky 125"] = {Color3.fromRGB(32,178,170), 79, "rbxassetid://131961136"}
+}
+
+local playerBikes = {}
+
+local function createBike(player, bikeType)
+    local config = MOTOS[bikeType]
+    if not config then return end
+    
+    if playerBikes[player] then playerBikes[player]:Destroy() end
+    
+    local bike = Instance.new("Model")
+    bike.Name = bikeType
+    bike.Parent = workspace
+    
+    -- Chassi principal
+    local chassis = Instance.new("Part")
+    chassis.Name = "Main"
+    chassis.Size = Vector3.new(8,2,3)
+    chassis.Color = config[1]
+    chassis.Material = Enum.Material.Metal
+    chassis.Parent = bike
+    
+    -- Assento
+    local seat = Instance.new("Seat")
+    seat.Size = Vector3.new(2,1,2)
+    seat.Color = Color3.new(0,0,0)
+    seat.Parent = bike
+    
+    -- Roda traseira
+    local backWheel = Instance.new("Part")
+    backWheel.Size = Vector3.new(1,4,4)
+    backWheel.Shape = Enum.PartType.Cylinder
+    backWheel.Color = Color3.new(0.2,0.2,0.2)
+    backWheel.Material = Enum.Material.Rubber
+    backWheel.Parent = bike
+    
+    -- Roda dianteira
+    local frontWheel = Instance.new("Part")
+    frontWheel.Size = Vector3.new(1,3.5,3.5)
+    frontWheel.Shape = Enum.PartType.Cylinder
+    frontWheel.Color = Color3.new(0.2,0.2,0.2)
+    frontWheel.Material = Enum.Material.Rubber
+    frontWheel.Parent = bike
+    
+    -- Soldas
+    local w1 = Instance.new("WeldConstraint")
+    w1.Part0, w1.Part1 = chassis, seat
+    w1.Parent = chassis
+    
+    local w2 = Instance.new("WeldConstraint")
+    w2.Part0, w2.Part1 = chassis, backWheel
+    w2.Parent = chassis
+    
+    local w3 = Instance.new("WeldConstraint")
+    w3.Part0, w3.Part1 = chassis, frontWheel
+    w3.Parent = chassis
+    
+    -- Posicionar partes
+    seat.CFrame = chassis.CFrame * CFrame.new(0,2,0)
+    backWheel.CFrame = chassis.CFrame * CFrame.new(-3,-2,0) * CFrame.Angles(0,0,math.rad(90))
+    frontWheel.CFrame = chassis.CFrame * CFrame.new(3,-2,0) * CFrame.Angles(0,0,math.rad(90))
+    
+    -- Física
+    local bv = Instance.new("BodyVelocity")
+    bv.MaxForce = Vector3.new(4000,0,4000)
+    bv.Velocity = Vector3.new(0,0,0)
+    bv.Parent = chassis
+    
+    local ba = Instance.new("BodyAngularVelocity")
+    ba.MaxTorque = Vector3.new(0,4000,4000)
+    ba.AngularVelocity = Vector3.new(0,0,0)
+    ba.Parent = chassis
+    
+    -- Som
+    local sound = Instance.new("Sound")
+    sound.SoundId = config[3]
+    sound.Volume = 0.5
+    sound.Looped = true
+    sound.Parent = chassis
+    
+    -- Efeitos
+    local fire = Instance.new("Fire")
+    fire.Size = 0
+    fire.Parent = chassis
+    
+    local smoke = Instance.new("Smoke")
+    smoke.Size = 0
+    smoke.Parent = chassis
+    
+    -- Valores
+    local speed = Instance.new("NumberValue")
+    speed.Name = "Speed"
+    speed.Value = 0
+    speed.Parent = bike
+    
+    local wheelie = Instance.new("BoolValue")
+    wheelie.Name = "Wheelie"
+    wheelie.Value = false
+    wheelie.Parent = bike
+    
+    bike.PrimaryPart = chassis
+    bike:SetPrimaryPartCFrame(CFrame.new(math.random(-50,50), 10, math.random(-50,50)))
+    
+    playerBikes[player] = bike
+    
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.CFrame = chassis.CFrame + Vector3.new(0,5,0)
+    end
+    
+    return bike
+end
+
+local function createGUI(player)
+    local gui = player.PlayerGui:FindFirstChild("BikeGUI")
+    if gui then gui:Destroy() end
+    
+    gui = Instance.new("ScreenGui")
+    gui.Name = "BikeGUI"
+    gui.Parent = player.PlayerGui
+    
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0,600,0,400)
+    frame.Position = UDim2.new(0.5,-300,0.5,-200)
+    frame.BackgroundColor3 = Color3.new(0.1,0.1,0.1)
+    frame.Parent = gui
+    
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0,15)
+    corner.Parent = frame
+    
+    local title = Instance.new("TextLabel")
+    title.Size = UDim2.new(1,0,0,60)
+    title.BackgroundTransparency = 1
+    title.Text = "🏍️ GARAGEM RODOGRAU 🏍️"
+    title.TextColor3 = Color3.new(1,0.8,0)
+    title.TextScaled = true
+    title.Font = Enum.Font.GothamBold
+    title.Parent = frame
+    
+    local scrollFrame = Instance.new("ScrollingFrame")
+    scrollFrame.Size = UDim2.new(1,-20,1,-80)
+    scrollFrame.Position = UDim2.new(0,10,0,70)
+    scrollFrame.BackgroundTransparency = 1
+    scrollFrame.ScrollBarThickness = 8
+    scrollFrame.Parent = frame
+    
+    local layout = Instance.new("UIGridLayout")
+    layout.CellSize = UDim2.new(0,180,0,120)
+    layout.CellPadding = UDim2.new(0,10,0,10)
+    layout.Parent = scrollFrame
+    
+    for name, config in pairs(MOTOS) do
+        local btn = Instance.new("TextButton")
+        btn.BackgroundColor3 = config[1]
+        btn.Text = name .. "\n" .. config[2] .. " km/h"
+        btn.TextColor3 = Color3.new(1,1,1)
+        btn.TextScaled = true
+        btn.Font = Enum.Font.GothamBold
+        btn.Parent = scrollFrame
+        
+        local btnCorner = Instance.new("UICorner")
+        btnCorner.CornerRadius = UDim.new(0,10)
+        btnCorner.Parent = btn
+        
+        btn.MouseButton1Click:Connect(function()
+            createBike(player, name)
+            gui:Destroy()
+            createControlsGUI(player)
+        end)
+    end
+    
+    scrollFrame.CanvasSize = UDim2.new(0,0,0,layout.AbsoluteContentSize.Y + 20)
+end
+
+local function createControlsGUI(player)
+    local gui = player.PlayerGui:FindFirstChild("ControlsGUI")
+    if gui then gui:Destroy() end
+    
+    gui = Instance.new("ScreenGui")
+    gui.Name = "ControlsGUI"
+    gui.Parent = player.PlayerGui
+    
+    -- HUD
+    local hud = Instance.new("Frame")
+    hud.Size = UDim2.new(0,200,0,80)
+    hud.Position = UDim2.new(0,20,0,20)
+    hud.BackgroundColor3 = Color3.new(0,0,0)
+    hud.BackgroundTransparency = 0.3
+    hud.Parent = gui
+    
+    local hudCorner = Instance.new("UICorner")
+    hudCorner.CornerRadius = UDim.new(0,10)
+    hudCorner.Parent = hud
+    
+    local speedLabel = Instance.new("TextLabel")
+    speedLabel.Name = "SpeedLabel"
+    speedLabel.Size = UDim2.new(1,0,1,0)
+    speedLabel.BackgroundTransparency = 1
+    speedLabel.Text = "0 km/h"
+    speedLabel.TextColor3 = Color3.new(1,0.8,0)
+    speedLabel.TextScaled = true
+    speedLabel.Font = Enum.Font.GothamBold
+    speedLabel.Parent = hud
+    
+    -- Botão garagem
+    local garageBtn = Instance.new("TextButton")
+    garageBtn.Size = UDim2.new(0,100,0,40)
+    garageBtn.Position = UDim2.new(1,-120,0,20)
+    garageBtn.BackgroundColor3 = Color3.new(0.6,0.3,0.7)
+    garageBtn.Text = "GARAGEM"
+    garageBtn.TextColor3 = Color3.new(1,1,1)
+    garageBtn.TextScaled = true
+    garageBtn.Font = Enum.Font.GothamBold
+    garageBtn.Parent = gui
+    
+    local gCorner = Instance.new("UICorner")
+    gCorner.CornerRadius = UDim.new(0,8)
+    gCorner.Parent = garageBtn
+    
+    garageBtn.MouseButton1Click:Connect(function()
+        createGUI(player)
+        gui:Destroy()
+    end)
+end
+
+local function controlBike(player, action)
+    local bike = playerBikes[player]
+    if not bike then return end
+    
+    local main = bike:FindFirstChild("Main")
+    local speed = bike:FindFirstChild("Speed")
+    local wheelie = bike:FindFirstChild("Wheelie")
+    if not main or not speed then return end
+    
+    local bv = main:FindFirstChild("BodyVelocity")
+    local ba = main:FindFirstChild("BodyAngularVelocity")
+    local sound = main:FindFirstChild("Sound")
+    local fire = main:FindFirstChild("Fire")
+    local smoke = main:FindFirstChild("Smoke")
+    
+    local maxSpeed = 0
+    for name, config in pairs(MOTOS) do
+        if bike.Name == name then maxSpeed = config[2] break end
+    end
+    
+    if action == "W" then
+        speed.Value = math.min(speed.Value + 8, maxSpeed)
+        bv.Velocity = main.CFrame.LookVector * speed.Value
+        if sound and not sound.IsPlaying then sound:Play() end
+        if fire then fire.Size = speed.Value/10 end
+        if smoke then smoke.Size = speed.Value/20 end
+        
+    elseif action == "S" then
+        speed.Value = math.max(speed.Value - 12, 0)
+        bv.Velocity = main.CFrame.LookVector * speed.Value
+        if speed.Value <= 5 then
+            if sound then sound:Stop() end
+            if fire then fire.Size = 0 end
+            if smoke then smoke.Size = 0 end
+        end
+        
+    elseif action == "Space" then
+        wheelie.Value = not wheelie.Value
+        if wheelie.Value then
+            ba.AngularVelocity = Vector3.new(0,0,-math.rad(25))
+            speed.Value = math.min(speed.Value + 10, maxSpeed)
+            bv.Velocity = main.CFrame.LookVector * speed.Value
+            if fire then fire.Size = 6 end
+        else
+            ba.AngularVelocity = Vector3.new(0,0,0)
+        end
+    end
+    
+    -- Atualizar velocímetro
+    local gui = player.PlayerGui:FindFirstChild("ControlsGUI")
+    if gui then
+        local speedLabel = gui:FindFirstChild("Frame"):FindFirstChild("SpeedLabel")
+        if speedLabel then
+            speedLabel.Text = math.round(speed.Value) .. " km/h"
+        end
+    end
+end
+
+-- Eventos
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        wait(2)
+        createGUI(player)
+    end)
+end)
+
+UIS.InputBegan:Connect(function(input, processed)
+    if processed then return end
+    local player = Players.LocalPlayer
+    local key = input.KeyCode.Name
+    
+    if key == "W" then controlBike(player, "W")
+    elseif key == "S" then controlBike(player, "S")
+    elseif key == "Space" then controlBike(player, "Space")
+    elseif key == "G" then createGUI(player)
+    end
+end)
+
+-- Para jogadores já no jogo
+for _, player in pairs(Players:GetPlayers()) do
+    if player.Character then
+        createGUI(player)
+    end
+end</div>
+                </div>
+            </div>
+
+            <!-- Script Compacto -->
+            <div class="script-card">
+                <div class="script-title">
+                    ⚡ Script Compacto
+                </div>
+                <div class="script-description">
+                    Versão reduzida mas completa, perfeita para quem quer funcionalidade 
+                    sem ocupar muito espaço. Ideal para compartilhar!
+                </div>
+
+                <ul class="features">
+                    <li>5 motos brasileiras</li>
+                    <li>Sistema de grau funcional</li>
+                    <li>Efeitos visuais básicos</li>
+                    <li>Interface simplificada</li>
+                    <li>Controles responsivos</li>
+                </ul>
+
+                <div class="instructions">
+                    <h3>📋 Como Usar:</h3>
+                    <ol>
+                        <li>Copie o script</li>
+                        <li>Cole no <strong>ServerScriptService</strong></li>
+                        <li>Aperte <strong>G</strong> no jogo para abrir garagem</li>
+                    </ol>
+                </div>
+
+                <div class="controls">
+                    <h3>🎮 Controles:</h3>
+                    <p><strong>W</strong> - Acelerar | <strong>S</strong> - Freiar | <strong>Espaço</strong> - Grau | <strong>G</strong> - Garagem</p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-title">Script Compacto</span>
+                        <button class="copy-btn" onclick="copyCode('compact-script')">📋 Copiar</button>
+                    </div>
+                    <div class="code-block" id="compact-script">-- RODOGRAU COMPACTO
+local P=game:GetService("Players")
+local U=game:GetService("UserInputService")
+local M={
+    ["CG 160"]={Color3.new(1,0,0),85,"rbxassetid://131961136"},
+    ["Bros 160"]={Color3.new(1,.6,0),95,"rbxassetid://142285556"},
+    ["Factor 150"]={Color3.new(0,.4,1),90,"rbxassetid://131961136"},
+    ["Pop 110"]={Color3.new(.4,.4,.4),75,"rbxassetid://131961136"},
+    ["YBR 125"]={Color3.new(1,.8,0),80,"rbxassetid://142285556"}
+}
+local B={}
+
+function C(p,n)
+    local c=M[n]
+    if B[p]then B[p]:Destroy()end
+    local m=Instance.new("Model")
+    m.Name=n
+    m.Parent=workspace
+    
+    local h=Instance.new("Part")
+    h.Size=Vector3.new(8,2,3)
+    h.Color=c[1]
+    h.Material="Metal"
+    h.Parent=m
+    
+    local s=Instance.new("Seat")
+    s.Size=Vector3.new(2,1,2)
+    s.Color=Color3.new(0,0,0)
+    s.Parent=m
+    
+    local w1=Instance.new("Part")
+    w1.Size=Vector3.new(1,4,4)
+    w1.Shape="Cylinder"
+    w1.Color=Color3.new(.2,.2,.2)
+    w1.Material="Rubber"
+    w1.Parent=m
+    
+    local w2=Instance.new("Part")
+    w2.Size=Vector3.new(1,3,3)
+    w2.Shape="Cylinder"
+    w2.Color=Color3.new(.2,.2,.2)
+    w2.Material="Rubber"
+    w2.Parent=m
+    
+    local v=Instance.new("BodyVelocity")
+    v.MaxForce=Vector3.new(4000,0,4000)
+    v.Velocity=Vector3.new(0,0,0)
+    v.Parent=h
+    
+    local a=Instance.new("BodyAngularVelocity")
+    a.MaxTorque=Vector3.new(0,4000,4000)
+    a.AngularVelocity=Vector3.new(0,0,0)
+    a.Parent=h
+    
+    local f=Instance.new("Fire")
+    f.Size=0
+    f.Parent=h
+    
+    local so=Instance.new("Sound")
+    so.SoundId=c[3]
+    so.Volume=.5
+    so.Looped=true
+    so.Parent=h
+    
+    local sp=Instance.new("NumberValue")
+    sp.Name="S"
+    sp.Value=0
+    sp.Parent=m
+    
+    local wh=Instance.new("BoolValue")
+    wh.Name="W
+    wh.Value=false
+    wh.Parent=m
+    
+    local we1=Instance.new("WeldConstraint")
+    we1.Part0,we1.Part1=h,s
+    we⁷
